@@ -1,0 +1,46 @@
+<!--index.wxml-->
+<wxs module="filter" src='../../utils/dataFormat.wxs'></wxs>
+<view class="container">
+  <view class="filter-wrap row cen-space">
+    <view>
+      按分类筛选
+    </view>
+    <view class="select-category" bindtap="selectCategory">
+      {{categoryName ||"选择品类"}}
+    </view>
+  </view>
+  <t-picker visible="{{showPicker}}"   title="选择品类" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+    <t-picker-item options="{{WalnutCategoryOptinos}}" />
+  </t-picker>
+  <view class="list-wrap w100">
+    <view class="item row w100" wx:for="{{dataList}}" wx:for-index="key" wx:key="key" data-id='{{item.id}}'>
+      <image class="img" src="../../images/author.jpg" alt="" />
+      <view class="info column w100">
+        <view class="name">
+          皮特吴
+        </view>
+        <view class="desc w100">
+          {{item.textareaValue}}
+        </view>
+        <view class="video">
+
+        </view>
+        <view class="time-wrap row cen-space">
+          <view class="time">
+            {{filter.formatTime(item.createTime, 'yyyy-MM-dd hh:mm')}}
+          </view>
+          <view class="want-btn row cen-center">
+            我想要
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="no-more w100 row cen-center" wx:if="{{!pageLoading}}">
+      <view wx:if="{{hasMore}}" bindtap="getMoreData">点击加载</view>
+      <view wx:else=""> {{dataList.length?'没有更多了~':'暂无数据'}}</view>
+    </view>
+  <view class="w100 no-data row start-cen" bindtap="getMoreData" wx:if="{{!dataList.length&&!pageLoading}}">
+    <text class="category"  decode="{{true}}"> {{categoryName}}&nbsp;</text>全都卖完啦~~
+  </view>
+</view>
