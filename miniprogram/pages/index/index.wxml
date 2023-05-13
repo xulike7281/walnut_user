@@ -30,14 +30,14 @@
             {{filter.formatTime(item.createTime, 'yyyy-MM-dd hh:mm')}}
           </view>
           <view class="want-btn row cen-center">
-            我想要
+            <button class="sharebtn row cen-center" type="default" size="mini" id="{{item.walnutNo}}" hover-class="none" open-type="share"> 我想要</button>
           </view>
         </view>
       </view>
     </view>
   </view>
   <view class="no-more w100 row cen-center" wx:if="{{!pageLoading}}">
-      <view wx:if="{{hasMore}}" bindtap="getMoreData">点击加载</view>
+      <view style="color: #ff6600;" wx:if="{{hasMore}}" bindtap="getMoreData">点击加载</view>
       <view wx:else=""> {{dataList.length?'没有更多了~':'暂无数据'}}</view>
     </view>
   <view class="w100 no-data row start-cen" bindtap="getMoreData" wx:if="{{!dataList.length&&!pageLoading}}">

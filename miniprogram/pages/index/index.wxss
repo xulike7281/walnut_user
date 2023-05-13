@@ -23,9 +23,10 @@ page {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 99;
 }
 .select-category{
-  color: #5F6792;
+  color: #ff6600;
   font-weight: 500;
 }
 .list-wrap{
@@ -35,7 +36,7 @@ page {
 .list-wrap .item{
   flex: auto;
   box-sizing: border-box;
-  
+  margin-bottom: 48rpx;
 }
 .item .img{
   flex:0 0 72rpx;
@@ -79,14 +80,21 @@ page {
   font-weight: 400;
 }
 .info .time-wrap .want-btn{
+  
+}
+.want-btn .sharebtn{
   width: 120rpx;
   height: 56rpx;
+  display: block;
   background: #2F2D2D;
   font-family: PingFangSC-Medium;
   font-size: 26rpx;
   color: #FFFFFF;
   font-weight: 500;
   margin-right: 30rpx;
+  padding: 0;
+  z-index: 1;
+  border-radius:0 ;
 }
 
 .no-data{
@@ -94,7 +102,7 @@ page {
   font-size: 28rpx;
 }
 .no-more{
-  margin-top: 40rpx;
+  /* margin-top: 40rpx; */
   font-size: 24rpx;
   color: #868A9B;
   margin-bottom: 40rpx;

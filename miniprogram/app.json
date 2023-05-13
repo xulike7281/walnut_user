@@ -7,12 +7,12 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "6666",
+    "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"
   },
  
   "tabBar": {
-    "selectedColor": "#0052d9",
+    "selectedColor": "#ff6600",
     "list": [
       {
         "pagePath": "pages/index/index",
