@@ -1,0 +1,10 @@
+.video-wrap{
+
+}
+.video-box{
+
+}
+.vids{
+  width: 454rpx;
+  height: 344rpx;
+}

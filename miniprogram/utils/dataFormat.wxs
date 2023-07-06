@@ -1,6 +1,6 @@
-var filterTime = function () {
+var filterTime = function (time,format) {
   // 实例化时间对象
-  var dt = getDate() 
+  var dt = getDate(time) 
  
   // 获取当前年份
   var year = dt.getFullYear() 
@@ -19,7 +19,9 @@ var filterTime = function () {
  
   // 获取当前秒
   var s = dt.getSeconds() >= 10 ? dt.getSeconds() : '0' + dt.getSeconds() 
- 
+ if(format == 'yyyy-MM-dd'){
+   return year + '年' + month + '月' + days+'日'
+ }
   // 返回时间字符串
   return year + '年' + month + '月' + days+'日' + ' ' + hour + ':' + min 
 }

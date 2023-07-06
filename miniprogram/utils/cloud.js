@@ -4,9 +4,9 @@ export async function runCloud(runName, data) {
 	let c1 = new wx.cloud.Cloud({
 		appid: 'wxa01cba08b3a94941',
 		// 资源方 AppID
-		resourceAppid: 'wx12766c930cd6ff2f',
+		resourceAppid: 'wx75e1ee2f425f1f94',
 		// 资源方环境 ID
-		resourceEnv: 'walnut-4gz3b5sy69d79f25',
+		resourceEnv: 'walnut-3g6jsxbi0e8ca417',
 	})
 	await c1.init()
   const res = await c1.callFunction({

@@ -1,0 +1,5 @@
+<view class="video-wrap" hover-class="none">
+    <view class="video-box">
+        <video class="vids"  id="vids{{random}}" data-index='{{index}}' src="{{videoUrl}}"></video>
+    </view>
+</view>

@@ -1,17 +1,38 @@
 <!--index.wxml-->
 <wxs module="filter" src='../../utils/dataFormat.wxs'></wxs>
 <view class="container">
-  <view class="filter-wrap row cen-space">
-    <view>
-      按分类筛选
-    </view>
-    <view class="select-category" bindtap="selectCategory">
-      {{categoryName ||"选择品类"}}
+  <view class="filter-wrap row cen-space"> 
+    <view class="select-category" bindtap="selectCategory"> 
+      {{"按分类筛选 "}} 
     </view>
   </view>
-  <t-picker visible="{{showPicker}}"   title="选择品类" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
-    <t-picker-item options="{{WalnutCategoryOptinos}}" />
-  </t-picker>
+  <t-popup visible="{{visible}}" bind:visible-change="onVisibleChange" placement="{{'left'}}">
+    <view class="popup-content">
+      <view class="category-wrap w100">
+        <view class="c-tit w100 row cen-space">
+          <view class="t-text"> 按品种筛选 </view>
+          <view class="t-desc"> 支持多选 </view>
+        </view>
+        <view class="c-list">
+          <view class="c-item {{item.checked?'item-active':''}}" wx:for="{{WalnutCategoryOptinos}}" wx:for-index="key" wx:key="key" data-id='{{item.value}}' data-value="{{item.label}}" bindtap="handelCategoryItem">{{item.label}}</view>
+        </view>
+      </view>
+      <view class="category-wrap level-wrap w100">
+        <view class="c-tit w100 row cen-space">
+          <view class="t-text"> 按等级筛选 </view>
+          <view class="t-desc"> 支持多选 </view>
+        </view>
+        <view class="c-list">
+          <view class="l-item {{item.checked?'item-active':''}}" wx:for="{{levelOptions}}" wx:for-index="key" wx:key="key" data-id='{{item.label}}' data-value="{{item.value}}" bindtap="handelLevelItem"><text>{{item.value}}</text>{{item.desc}}</view>
+        </view>
+      </view>
+      <view class="btn-wrap row cen-center">
+        <view class="confirm  row cen-center" bindtap="confirmQuery">  确认 </view>
+        <view class="reset row cen-center"  bindtap="resetQuery"> 重置 </view>
+      </view>
+    </view>
+  </t-popup>
+
   <view class="list-wrap w100">
     <view class="item row w100" wx:for="{{dataList}}" wx:for-index="key" wx:key="key" data-id='{{item.id}}'>
       <image class="img" src="../../images/author.jpg" alt="" />
@@ -23,24 +44,25 @@
           {{item.textareaValue}}
         </view>
         <view class="video">
-
+          <!-- <video src="{{item.videoUrl}}" class='videoClass' /> -->
+          <player videoUrl="{{item.videoUrl}}"></player>
         </view>
         <view class="time-wrap row cen-space">
           <view class="time">
             {{filter.formatTime(item.createTime, 'yyyy-MM-dd hh:mm')}}
           </view>
           <view class="want-btn row cen-center">
-            <button class="sharebtn row cen-center" type="default" size="mini" id="{{item.walnutNo}}" hover-class="none" open-type="share"> 我想要</button>
+            <button class="sharebtn row cen-center {{}}" type="default" size="mini" id="{{item.walnutNo}}" hover-class="none" open-type="share">我想要</button>
           </view>
         </view>
       </view>
     </view>
   </view>
   <view class="no-more w100 row cen-center" wx:if="{{!pageLoading}}">
-      <view style="color: #ff6600;" wx:if="{{hasMore}}" bindtap="getMoreData">点击加载</view>
-      <view wx:else=""> {{dataList.length?'没有更多了~':'暂无数据'}}</view>
-    </view>
+    <view style="color: #ff6600;" wx:if="{{hasMore}}" bindtap="getMoreData">点击加载</view>
+    <view wx:else=""> {{dataList.length?'没有更多了~':'暂无数据'}}</view>
+  </view>
   <view class="w100 no-data row start-cen" bindtap="getMoreData" wx:if="{{!dataList.length&&!pageLoading}}">
-    <text class="category"  decode="{{true}}"> {{categoryName}}&nbsp;</text>全都卖完啦~~
+    <text class="category" decode="{{true}}"> {{categoryName}}&nbsp;</text>
   </view>
 </view>

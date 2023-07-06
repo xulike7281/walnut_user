@@ -10,3 +10,10 @@
 
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
+ // "plugins": {
+  //   "t-video": {
+  //     "version": "1.0.8",
+  //     "provider": "wx5474241b2a65b906"
+  //   }
+  // },
+  //  "t-video": "plugin://t-video/t-video",

@@ -1,7 +1,7 @@
 const WalnutCategoryOptinos =  [
   {
     value: 0,
-    label: '全部',
+    label: '全部品种',
   },
   {
     value: 1,

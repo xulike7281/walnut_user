@@ -1,2 +1,36 @@
-<!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<!--pages/management.wxml-->
+<wxs module="filter" src='../../utils/dataFormat.wxs'></wxs>
+<view class="container">
+  <view class="userinfo-wrap w100">
+    <view class="userinfo row cen-start">
+      <image src="{{userInfo.avatarUrl || avatarUrl}}" mode='widthFix' alt="" />
+      <view class="name column cen-start" wx:if="{{userInfo.nickName}}">
+        <view class="row cen-start">
+          <view class="mr-10">{{userInfo.nickName}}</view>
+          <view class="get-phone-btn" wx:if="{{!userInfo.mobile}}">
+            <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">授权手机号码</button>
+          </view>
+          <view class="mobile" wx:else=''>{{userInfo.mobile}}</view>
+        </view>
+        <view class="w100 row cen-start mt-10">
+        <view class="level-icon row cen-center mr-10">等级</view>
+        <view class="integral">{{userInfo.integral}}分</view>
+        </view>
+      </view>
+
+      <view class="get-userinfo-btn" wx:else="">
+        <button bindtap="getUserProfile"> 授权登录 </button>
+      </view>
+    </view>
+  </view>
+  <view class="order-list-wrap">
+    <view class="order-title">购买记录</view>
+    <view class="order-list" wx:for="{{orderList}}" wx:for-index="key" wx:key="key">
+      <view class="category-name">
+        {{item.walnutCategoryName}}
+      </view>
+      <view class="walnut-size"><text class="mr-15">{{item.walnutSize}}</text> <text class="mr-15">等级{{item.walnutLevel}}</text> <text>成交价格 </text>{{item.dealPrice}} </view>
+      <view class="walnut-no"><text class="mr-15"> 编号{{item.walnutNo}}</text> <text> {{filter.formatTime(item.createTime, 'yyyy-MM-dd')}}购买</text></view>
+    </view>
+  </view>
+</view>
